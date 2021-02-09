@@ -1,0 +1,98 @@
+[
+  {
+    "model": "rewards.transaction",
+    "pk": 1,
+    "fields": {
+      "user_id": 1,
+      "summary": "points from purchase",
+      "description": "",
+      "points": 100,
+      "timestamp": "2021-02-09T21:04:26.792Z"
+    }
+  },
+  {
+    "model": "rewards.transaction",
+    "pk": 2,
+    "fields": {
+      "user_id": 1,
+      "summary": "points from purchase",
+      "description": "",
+      "points": 200,
+      "timestamp": "2021-02-09T21:04:26.795Z"
+    }
+  },
+  {
+    "model": "rewards.transaction",
+    "pk": 3,
+    "fields": {
+      "user_id": 1,
+      "summary": "points from purchase",
+      "description": "",
+      "points": 100,
+      "timestamp": "2021-02-09T21:04:26.797Z"
+    }
+  },
+  {
+    "model": "rewards.transaction",
+    "pk": 4,
+    "fields": {
+      "user_id": 1,
+      "summary": "points from purchase",
+      "description": "",
+      "points": 400,
+      "timestamp": "2021-02-09T21:04:26.800Z"
+    }
+  },
+  {
+    "model": "rewards.transaction",
+    "pk": 5,
+    "fields": {
+      "user_id": 1,
+      "summary": "points from purchase",
+      "description": "",
+      "points": 600,
+      "timestamp": "2021-02-09T21:04:26.802Z"
+    }
+  },
+  {
+    "model": "rewards.transaction",
+    "pk": 6,
+    "fields": {
+      "user_id": 1,
+      "summary": "points from purchase",
+      "description": "",
+      "points": 20,
+      "timestamp": "2021-02-09T21:04:27.250Z"
+    }
+  },
+  {
+    "model": "rewards.tier",
+    "pk": 1,
+    "fields": {
+      "summary": "Basic",
+      "description": "user is basic",
+      "threshold": 0,
+      "rank": 0
+    }
+  },
+  {
+    "model": "rewards.tier",
+    "pk": 2,
+    "fields": {
+      "summary": "KindaAwesome",
+      "description": "user is Only slightly awesome, there are better",
+      "threshold": 1000,
+      "rank": 1
+    }
+  },
+  {
+    "model": "rewards.tier",
+    "pk": 3,
+    "fields": {
+      "summary": "GodLike",
+      "description": "user is GodLike",
+      "threshold": 10000,
+      "rank": 3
+    }
+  }
+]
