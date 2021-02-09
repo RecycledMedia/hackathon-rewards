@@ -21,4 +21,7 @@ from rewards import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('transactions/', views.transaction_list),
+    path('tiers/', views.tiers),
+    path('tier/<int:tier_id>', views.tierDetail),
+
 ]

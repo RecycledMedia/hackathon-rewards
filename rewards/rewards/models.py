@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Transaction(models.Model):
-    id = models.IntegerField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     user_id = models.IntegerField(null=False)
     summary = models.CharField(
         max_length=255,
@@ -17,7 +17,7 @@ class Transaction(models.Model):
 
 
 class Tier(models.Model):
-    id = models.IntegerField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     summary = models.CharField(
         max_length=255,
         null=False,
