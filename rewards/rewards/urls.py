@@ -23,5 +23,10 @@ urlpatterns = [
     path('transactions/', views.transaction_list),
     path('tiers/', views.tiers),
     path('tier/<int:tier_id>', views.tierDetail),
+    path('user/balance/<int:user_id>', views.getUserBalance),
+    path('user/tierpoints/<int:user_id>', views.getTierPoints),
+    path('user/tier/<int:user_id>', views.getTier),
+    path('user/<int:user_id>', views.getUserDetails)
+
 
 ]

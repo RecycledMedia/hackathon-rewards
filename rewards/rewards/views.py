@@ -1,5 +1,7 @@
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.db.models import *
+from datetime import datetime, timedelta
 from rest_framework.parsers import JSONParser
 from rewards.models import *
 from rewards.serializers import *
@@ -68,11 +70,50 @@ def tierDetail(request, tier_id):
         except Exception:
             return JsonResponse({'error': 'Something terrible went wrong'}, safe=False, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-# @api_view(["GET"])
-# @csrf_exempt
-# def getUserBalance(request, user_id):
-#     balance = Transaction.objects.filter(user_id=user_id).aggregate(balance=Sum('points')
+#@api_view(["GET"])
+@csrf_exempt
+def getUserBalance(request, user_id):
+    balance = Transaction.objects.filter(user_id=user_id, ).aggregate(Sum('points'))["points__sum"]
+    return JsonResponse({"user_id": user_id, "balance": str(balance)}, safe=False, status=status.HTTP_200_OK)
+#    tier_balance =
+#    tier_num =  Tier.objects.filter(user_id__gt=balance).aggregate(Max())
 
+
+def getTierPoints(request, user_id):
+    tierBalance = Transaction.objects.filter(
+        user_id=user_id,
+        points__gte=0,
+        timestamp__gte=datetime.now()-timedelta(days=365)
+        ).aggregate(Sum('points'))["points__sum"]
+    return JsonResponse({"user_id": user_id, "tierPoints": str(tierBalance)}, safe=False, status=status.HTTP_200_OK)
+
+
+def getTier(request, user_id):
+    tierBalance = Transaction.objects.filter(
+        user_id=user_id,
+        points__gte=0,
+        timestamp__gte=datetime.now()-timedelta(days=365)
+        ).aggregate(Sum('points'))["points__sum"]
+    tier = Tier.objects.filter(
+        threshold__lte = tierBalance
+    ).order_by('-rank')[0]
+    serializer = TierSerializer(tier, many=False)
+    return JsonResponse(serializer.data, safe=False)
+
+def getUserDetails(request, user_id):
+    balance = Transaction.objects.filter(user_id=user_id, ).aggregate(Sum('points'))["points__sum"]
+    tierBalance = Transaction.objects.filter(
+        user_id=user_id,
+        points__gte=0,
+        timestamp__gte=datetime.now()-timedelta(days=365)
+        ).aggregate(Sum('points'))["points__sum"]
+    tier = Tier.objects.filter(
+        threshold__lte = tierBalance
+    ).order_by('-rank')[0]
+    return JsonResponse({"user_id": str(user_id), "balance": str(balance), "tier_id": str(tier.id), "tier_summary": str(tier.summary), "tierPoints": str(tierBalance)}, safe=False, status=status.HTTP_200_OK)
+
+#def getUserTier(request, user_id):
+#    echo ""
 
 # class UserInfo(APIView):
 
