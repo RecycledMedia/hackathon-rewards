@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from models import Transaction
+from rewards.models import Transaction
 
 class TransactionSerializer(serializers.ModelSerializer):
     class Meta:
